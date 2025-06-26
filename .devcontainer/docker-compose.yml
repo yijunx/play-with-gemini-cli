@@ -1,0 +1,19 @@
+# docker network create utilities
+networks:
+  utilities:
+    external: true
+
+services:
+  play-with-gemini-cli:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ~/.ssh:/opt/node-user/.ssh
+      - ..:/opt/node-user/code
+      - ../.devcontainer/zshrc:/opt/node-user/.zshrc
+
+    command: ["tail -f /dev/null"]
+    networks:
+      - utilities
+
